@@ -19,5 +19,6 @@ const UserSchema=new mangoose.Schema({
     },
 
 })
-
-module.exports=mangoose.model('User',UserSchema);
+const User=mangoose.model('User',UserSchema);
+User.createIndexes;
+module.exports=User;
