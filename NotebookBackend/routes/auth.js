@@ -8,7 +8,7 @@ const {body,validationResult}=require("express-validator");
 // importing bcrypt
 const bcrypt = require('bcryptjs');
 const jwt=require("jsonwebtoken")
-
+const fetchuser=require("../middleware/fetchuser")
 const JWT_SECRET= "i am batman"
 
 // Adding user using post method
@@ -82,4 +82,19 @@ router.post('/login', [
         return res.status(500).send("Server Error");
     }
 });
+
+
+// get login user
+router.post('/getuser',fetchuser,async(req,res)=>{
+    try{
+        userId="req.user.id"
+        const user= await User.findById(req.user.id).select("-password");
+        res.send(user);
+        // res.json(user);
+    }catch(err){
+        console.log(err.message);
+        res.status(500).json("Server Error")
+    }
+    
+})
 module.exports=router;
