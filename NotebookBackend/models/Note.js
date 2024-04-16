@@ -1,6 +1,10 @@
 const mangoose=require('mongoose');
 const NotesSchema=new mangoose.Schema({
-    name:{
+    user:{
+        type:mangoose.Schema.Types.ObjectId,
+        ref:'user'
+    },
+    title:{
         type:String,
         required:true
     },

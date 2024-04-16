@@ -17,4 +17,4 @@ const fetchusers=(req,res,next)=>{
     
 }
 
-module.exports=fetchusers;
+module.exports=fetchusers; 
