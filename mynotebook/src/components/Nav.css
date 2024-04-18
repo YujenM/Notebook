@@ -17,14 +17,15 @@
     background-color: var(--secondary-main-color);
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .topnav {
-    margin: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 1%;
 }
 
 .topnav ul {
@@ -51,6 +52,7 @@
     font-weight: 500;
     margin: 0 2rem;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .links:hover {
@@ -73,20 +75,23 @@
     width: 100%;
     background-color: var(--accent-color1);
     border-radius: 10px;
+    margin: 4% 0;
+    transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 900px) {
-    .menu {
-        display: flex;
+    .navbar{
+        width: 100%;
     }
 
-    nav {
-        flex-direction: column;
-        align-items: start;
+    .menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .menu.open span:nth-child(1) {
-        transform: rotate(50deg) translate(15px, 11px);
+        transform: rotate(45deg) translate(6px, 5px);
     }
 
     .menu.open span:nth-child(2) {
@@ -94,17 +99,17 @@
     }
 
     .menu.open span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    .menu span {
-        transition: all 0.3s ease;
+        transform: rotate(-45deg) translate(9px, -7px);
     }
 
     .pages {
         display: none;
+        position: absolute;
+        top: 3.5rem; 
+        left: 0;
         background-color: var(--secondary-main-color);
-        width: 100%;
+        width: 80%;
+        transition: all 0.3s ease-in-out;
     }
 
     .pages.open {
@@ -113,7 +118,16 @@
 
     .links {
         display: block;
+        padding: 1rem 2rem; 
         color: var(--text-color);
         transition: color 0.3s ease;
+    }
+
+    .topnav ul {
+        display: block;
+    }
+
+    .links:hover {
+        color: var(--accent-color1);
     }
 }
