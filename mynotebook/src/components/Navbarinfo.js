@@ -10,9 +10,5 @@ export const navbarinfo=[
         path: '/About',
         cName:'nav-text',
         
-    },
-    
-    
-    
-    
+    }
 ]

@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #87CEEB; /* Sky Blue */
+    --secondary-main-color: #B0E2FF; /* Powder Blue */
+    --text-color: #000000; /* Black */
+    --accent-color1: #FF7F50; /* Coral */
+    --accent-color2: #98FF98; /* Mint Green */
+    --accent-color3: #E6E6FA; /* Lavender */
+}
+
+.navbar {
+    background-color: var(--secondary-main-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.topnav {
+    margin: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.topnav ul {
+    display: flex;
+    list-style: none;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 0 3rem;
+    cursor: pointer;
+    color: var(--accent-color1);
+}
+
+.pages {
+    margin: 0.8em 5em;
+}
+
+.links {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 2rem;
+    cursor: pointer;
+}
+
+.links:hover {
+    color: var(--accent-color1);
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+
+.menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: var(--accent-color1);
+    border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+    .menu {
+        display: flex;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .menu.open span:nth-child(1) {
+        transform: rotate(50deg) translate(15px, 11px);
+    }
+
+    .menu.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu span {
+        transition: all 0.3s ease;
+    }
+
+    .pages {
+        display: none;
+        background-color: var(--secondary-main-color);
+        width: 100%;
+    }
+
+    .pages.open {
+        display: block;
+    }
+
+    .links {
+        display: block;
+        color: var(--text-color);
+        transition: color 0.3s ease;
+    }
+}
