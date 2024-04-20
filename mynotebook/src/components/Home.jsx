@@ -1,9 +1,14 @@
 import React from 'react'
+import './index.css'
+import Notes from './Notes'
+
 
 function Home() {
+  
   return (
-    <div>
-      <h1>this is home</h1>
+    <div className='container mx-auto mt-5'>
+        <h1 className='text-5xl'>Your Notes</h1>
+        <Notes/>
     </div>
   )
 }
