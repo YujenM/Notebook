@@ -7,10 +7,10 @@ function Home() {
   
   return (
     <div className='container mx-auto mt-5'>
-        <h1 className='text-5xl'>Your Notes</h1>
+        <h1 className='text-3xl textcenter'>Write It Down, Keep It Handy.</h1>
         <Notes/>
     </div>
   )
 }
 
-export default Home
+export default Home;

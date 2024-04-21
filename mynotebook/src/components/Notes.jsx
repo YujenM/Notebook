@@ -3,11 +3,11 @@ import contextvalue from '../context/notes/Notecontext'
 import NoteItem from './NoteItem';
 function Notes() {
     const context=useContext(contextvalue);
-    const{notes,setnotes}=context;
+    const{notes}=context;
     return (
         <div>
             {notes.map((note)=>{
-                return <NoteItem note={note}/>
+                return <NoteItem key={note.id} note={note}/>
             })}
         </div>
     )

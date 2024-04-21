@@ -18,6 +18,8 @@
     --accent-color3: #E6E6FA; /* Lavender */
 }
 
+
+
 .navbar {
     background-color: var(--main-color);
     display: flex;
@@ -85,6 +87,12 @@
 }
 
 @media (max-width: 900px) {
+    .textcenter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 0 3%;
+    }
     .navbar{
         width: 100%;
     }
@@ -148,13 +156,31 @@
     padding: 20px;
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.notebook-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .title {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 10px;
-    color:var(--accent-color1);
+    color: var(--accent-color1);
+}
+
+.icons {
+    display: flex;
+    gap: 20px; 
+    font-size: 1.5rem;
+}
+
+.icon {
+    color: var(--accent-color1); 
+    cursor:pointer;
 }
 
 .description {
@@ -163,4 +189,49 @@
 
 .date {
     font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .notebook-card {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .icons {
+        gap: 10px;
+    }
+}
+
+
+
+/* Alert component */
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+/* Alert variants based on type */
+.alert-info {
+    background-color: var(--secondary-main-color); 
+}
+
+.alert-warning {
+    background-color: var(--accent-color1);
+}
+
+.alert-success {
+    background-color: var(--accent-color2); 
+}
+
+.alert-error {
+    background-color: var(--accent-color3);
 }

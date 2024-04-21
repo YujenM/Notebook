@@ -4,6 +4,7 @@ import { navbarinfo } from './Navbarinfo';
 
 import './index.css';
 
+
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
 
