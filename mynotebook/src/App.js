@@ -8,7 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import Notestate from './context/notes/NoteState';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
 
 
 function App() {
@@ -17,10 +17,10 @@ function App() {
       <Notestate>
         <Router>
           <Navbar/>
-          <Alert message="This is an informational message." type="info" />
+          {/* <Alert message="This is an informational message." type="info" />
             <Alert message="This is a success message!" type="success" />
             <Alert message="Warning! Proceed with caution." type="warning" />
-            <Alert message="Error: Something went wrong." type="error" />
+            <Alert message="Error: Something went wrong." type="error" /> */}
           <Routes>
             <Route exact path="/" element={<Home />} /> 
             <Route exact path="/About" element={<About />} /> 
