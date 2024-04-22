@@ -17,12 +17,10 @@ function AddNotes() {
 
     return (
     <div className='AddNotes'>
-        <button onClick={toggleModel}>
-        Add your Notes
-        <FontAwesomeIcon icon={icon.faPlus} className='Addicon ml-3' />
+        <button className='addnotesbtn' onClick={toggleModel}> Add your Notes <FontAwesomeIcon icon={icon.faPlus} className='Addicon ml-3' />
         </button>
         {isModelOpen && (
-        <Model closeModel={toggleModel} modelTitle={"Add a New Note"}  addNote={addNote}/>
+        <Model closeModel={toggleModel} modelTitle={"Add New Note"}  addNote={addNote}/>
         )}
     </div>
     );

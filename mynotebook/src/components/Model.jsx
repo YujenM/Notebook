@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Css/Addnotes.css';
+import './Css/Model.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as icon from '@fortawesome/free-solid-svg-icons';
 

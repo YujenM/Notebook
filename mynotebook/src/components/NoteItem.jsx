@@ -20,6 +20,7 @@ function NoteItem(props) {
                 </div>
             </div>
             <div className="description">{note.description}</div>
+            <div className="description font-bold">Tag: {note.tag}</div>
             <div className="date">{note.date}</div>
         </div>
         </>
