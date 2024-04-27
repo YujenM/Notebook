@@ -32,16 +32,16 @@ const getNotes =async()  => {
 
 // add notes
 const addNote =async(title,description,tag)  => {
-    // const response=await fetch(`${host}/api/notes/addnote`,{
-    //     method: 'POST',
-    //     headers:{
-    //         'Content-Type': 'application/json',
-    //         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYzhkY2E0NTJkYzhhMzZjNTY0NjI0In0sImlhdCI6MTcxMzE0NzMzOH0.V3sNyThi07fG6UiSobuTaRytVPqKbXesiNEChHHV8aQ',
-    //     },
-    //     body: JSON.stringify(title,description,tag)
-    // })
-    // const json=response.json();
-    // console.log(json);
+    const response= await fetch(`${host}/api/notes/addnote`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYzhkY2E0NTJkYzhhMzZjNTY0NjI0In0sImlhdCI6MTcxMzE1MDI3Nn0.jkBQLPPi6M-1WMoqjGVs_XZRadaVBslsS270H5fU2o0',
+        },
+        body: JSON.stringify(title,description,tag)
+    })
+    const json= await response.json();
+    console.log(json);
     console.log("Adding a new note");
     const note = {
         "_id": uuidv4(),
@@ -52,10 +52,21 @@ const addNote =async(title,description,tag)  => {
         "date": new Date().toISOString(),
         "__v": 0,
     };
+    console.log(note)
     setNotes(notes.concat(note))
 };
+
 // Delete a Note
-const deletenote=(id)=>{
+const deletenote=async (id)=>{
+    const response = await fetch(`${host}/api/notes/deletenode/${id}`, {
+        method: 'DELETE', 
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYzhkY2E0NTJkYzhhMzZjNTY0NjI0In0sImlhdCI6MTcxMzE0NzMzOH0.V3sNyThi07fG6UiSobuTaRytVPqKbXesiNEChHHV8aQ',
+        }, 
+    });
+    const json=response.json();
+    console.log(json)
     console.log("Deleting the note" +id)
     const newnotes=notes.filter((note)=>{return note._id!==id})
     setNotes(newnotes)

@@ -6,8 +6,8 @@ import * as icon from '@fortawesome/free-solid-svg-icons';
 function NoteItem(props) {
     const context=new useContext(notecontext);
     const {deletenote}=context;
-    const {editnote}=context;
-    const { note } = props;
+    // const {editnote}=context;
+    const { note,updateNote } = props;
 
     return (
         <>
@@ -16,7 +16,7 @@ function NoteItem(props) {
                 <div className="title">{note.title}</div>
                 <div className="icons">
                     <FontAwesomeIcon icon={icon.faTrash} className="icon" onClick={()=>{deletenote(note._id)}} />
-                    <FontAwesomeIcon icon={icon.faPenToSquare}  className="icon" onClick={()=>{editnote(note._id)}} />
+                    <FontAwesomeIcon icon={icon.faPenToSquare}  className="icon" onClick={()=>{updateNote(note)}} />
                 </div>
             </div>
             <div className="description">{note.description}</div>
