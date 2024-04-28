@@ -4,18 +4,19 @@ import NoteItem from './NoteItem';
 import AddNotes from './AddNotes';
 
 const Notes = () => {
-    const { notes, getNotes } = useContext(NoteContext);
+    const { notes, getNotes,editnote } = useContext(NoteContext);
     const ref = useRef(null);
+    const refclose=useRef(null);
     const modalRef = useRef(null);
 
     useEffect(() => {
         getNotes();
         // eslint-disable-next-line 
     }, []);
-    const [note, setNote] = useState({etitle:"",edescription:"",etag: ""});
+    const [note, setNote] = useState({ id :"",etitle:"",edescription:"",etag: ""});
     const updateNote = (currentnote) => {
         ref.current.click();
-        setNote({etitle:currentnote.title,edescription:currentnote.description,etag:currentnote.tag})
+        setNote({id:currentnote._id ,etitle:currentnote.title,edescription:currentnote.description,etag:currentnote.tag})
     };
 
     const toggleModal = () => {
@@ -32,11 +33,17 @@ const Notes = () => {
 
     const handleInputChange = (e) => {
       setNote({...note,[e.target.name]:e.target.value})
-  };
-    const handleSubmit = (e) => {
-      console.log("Updating note",note);
+      };
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      // editNote(note.id,note.etitle,note.edescription,note.etag);
+      try{
+        console.log("Updating note",note);
+        await editnote(note.id,note.etitle,note.edescription,note.etag);
+        refclose.current.click();
+      }catch(err){
+        console.log(err)
+      }
+    
   };
 
     return (
@@ -50,7 +57,7 @@ const Notes = () => {
                 <div className="relative bg-white rounded-lg shadow p-4 w-full max-w-md">
                     <div className="flex justify-between items-center border-b p-4">
                         <h3 className="text-xl font-semibold text-gray-900">Edit Note</h3>
-                        <button type="button"  className="text-gray-400 hover:bg-gray-200 rounded-lg w-8 h-8" onClick={toggleModal}>
+                        <button type="button" ref={refclose}  className="text-gray-400 hover:bg-gray-200 rounded-lg w-8 h-8" onClick={toggleModal}>
                             <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="2">
                                 <path d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7l-6 6" />
                             </svg>

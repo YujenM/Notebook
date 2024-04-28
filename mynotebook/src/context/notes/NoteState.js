@@ -38,7 +38,7 @@ const addNote =async(title,description,tag)  => {
             'Content-Type': 'application/json',
             'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYzhkY2E0NTJkYzhhMzZjNTY0NjI0In0sImlhdCI6MTcxMzE1MDI3Nn0.jkBQLPPi6M-1WMoqjGVs_XZRadaVBslsS270H5fU2o0',
         },
-        body: JSON.stringify(title,description,tag)
+        body: JSON.stringify({title,description,tag})
     })
     const json= await response.json();
     console.log(json);
@@ -73,10 +73,10 @@ const deletenote=async (id)=>{
 }
 // Edit a Note
 const editnote = async (id, title, description, tag) => {
-    console.log(`Editing the note with id: ${id}`);
+    // console.log(`Editing the note with id: ${id}`);
 
     // API call to update the note
-    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+    const response = await fetch(`${host}/api/notes/updatenode/${id}`, {
         method: 'PUT', 
         headers: {
             'Content-Type': 'application/json',
@@ -87,21 +87,20 @@ const editnote = async (id, title, description, tag) => {
 
     const responseJson = await response.json(); 
     console.log('Edit response:', responseJson);
-
-    if (response.ok) {
-        console.log(`Successfully updated note with id: ${id}`);
-    } else {
-        console.error('Error editing note:', responseJson.message);
-    }
     // edit a note
+    let newnote=JSON.parse(JSON.stringify(notes))
     for (let index = 0; index < notes.length; index++){
         const element = notes[index];
         if (element._id === id){
-            element.title=title;
-            element.description=description;
-            element.tag=tag;
+            newnote[index].title=title;
+            newnote[index].description=description;
+            newnote[index].tag=tag;
+            break;
         }
+        
     }
+    // console.log(newnote);
+    setNotes(newnote);
 };
 
 return (

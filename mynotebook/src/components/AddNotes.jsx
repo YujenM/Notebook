@@ -29,7 +29,8 @@ function AddNotes() {
 
     const handleSubmit = async (e) => {
         try {
-            await addNote(note);
+            e.preventDefault();
+            await addNote(note.title,note.description,note.tag);
             handleCloseModal();
         } catch (error) {
             console.error("Error adding note:", error);
