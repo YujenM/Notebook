@@ -28,8 +28,13 @@ function AddNotes() {
     };
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (note.title.trim() === "" || note.description.trim() === "" || note.tag.trim() === "") {
+            alert("Please fill in all fields before submitting.");
+            return;
+        }
         try {
-            e.preventDefault();
+
             await addNote(note.title,note.description,note.tag);
             handleCloseModal();
         } catch (error) {
@@ -49,43 +54,29 @@ function AddNotes() {
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2>Add a Note</h2>
+                        <div className="modelheader">
+                            <h2 className='addnotetitle'>Add a Note</h2>
+                            <button className="Addicon ml-2"  type="button" onClick={handleCloseModal}>
+                                <FontAwesomeIcon icon={icon.faXmark}/>
+                            </button>
+
+                        </div>
                         <form >
                             <div className="form-group">
-                                <label htmlFor="title">Title:</label>
-                                <input
-                                    type="text"
-                                    id="title"
-                                    name="title"
-                                    onChange={handleInputChange}
-                                    required
-                                />
+                                <label className='modelttiles' htmlFor="title">Title:</label>
+                                <input type="text" id="title" name="title" className='userinput' onChange={handleInputChange}  />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="description">Description:</label>
-                                <textarea
-                                    id="description"
-                                    name="description"
-                                    onChange={handleInputChange}
-                                    required
-                                />
+                                <label className='modelttiles'  htmlFor="description">Description:</label>
+                                <textarea id="description" name="description" className='userinput'  onChange={handleInputChange}  />
                             </div>
-
                             <div className="form-group">
-                                <label htmlFor="tag">Tag:</label>
-                                <input
-                                    type="text"
-                                    id="tag"
-                                    name="tag"
-                                    onChange={handleInputChange}
-                                />
+                                <label className='modelttiles'  htmlFor="tag">Tag:</label>
+                                <input type="text" id="tag" name="tag"className='userinput'  onChange={handleInputChange}/>
                             </div>
-
                             <button type="submit" onClick={handleSubmit}>Add Note</button>
-                            <button type="button" onClick={handleCloseModal}>
-                                Close
-                            </button>
+                            
                         </form>
                     </div>
                 </div>

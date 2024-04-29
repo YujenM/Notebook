@@ -1,6 +1,5 @@
 import Notecontext from './Notecontext';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; 
+import { useState } from 'react'; 
 
 const Notestate = (props) => {
     const host="http://localhost:2000"
@@ -40,19 +39,7 @@ const addNote =async(title,description,tag)  => {
         },
         body: JSON.stringify({title,description,tag})
     })
-    const json= await response.json();
-    console.log(json);
-    console.log("Adding a new note");
-    const note = {
-        "_id": uuidv4(),
-        "user": uuidv4(),
-        "title": title,
-        "description": description,
-        "tag": tag,
-        "date": new Date().toISOString(),
-        "__v": 0,
-    };
-    console.log(note)
+    const note= await response.json();
     setNotes(notes.concat(note))
 };
 
