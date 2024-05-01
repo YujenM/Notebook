@@ -8,6 +8,8 @@ import {
   Route
 } from "react-router-dom";
 import Notestate from './context/notes/NoteState';
+import Signup from './components/Signup';
+import Userlogin from './components/Userlogin';
 // import Alert from './components/Alert';
 
 
@@ -24,6 +26,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} /> 
             <Route exact path="/About" element={<About />} /> 
+            <Route exact path="/UserLogin" element={<Userlogin />} /> 
+            <Route exact path="/signup" element={<Signup />} /> 
           </Routes>
         </Router> 
       </Notestate>

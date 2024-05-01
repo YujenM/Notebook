@@ -18,155 +18,107 @@
     --accent-color3: #E6E6FA; /* Lavender */
 }
 
-
-
+/* Default styles for the Navbar */
 .navbar {
     background-color: var(--main-color);
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 1%;
-}
-
-.topnav ul {
-    display: flex;
-    list-style: none;
-}
-
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0 0 0 3rem;
-    cursor: pointer;
-    color: var(--accent-color1);
-}
-
-.pages {
-    margin: 0.8em 5em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-}
-
-.links {
     color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0 2rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.links:hover {
-    color: var(--accent-color1);
-}
-
-.menu {
-    display: none;
-    position: absolute;
-    top: 1rem;
-    right: 3rem;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 2.25rem;
-    height: 2rem;
-}
-
-.menu span {
-    height: 0.4rem;
-    width: 100%;
-    background-color: var(--accent-color1);
-    border-radius: 10px;
-    margin: 4% 0;
-    transition: all 0.3s ease-in-out;
-}
-.login{
-    margin: 0 5%;
+    padding: 1rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width:100%;
-}
-.lgnsgn{
-    display: inline-block;
-    text-align: center; 
-    margin: 0 10px 5px 0;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid var(--accent-color1);
-    background-color:var(--accent-color1);
-}
-.lgnsgn:hover{
-    background-color:var(--accent-color2)
-}
-@media (max-width: 900px) {
-    .textcenter{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 0 0 3%;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+  }
+  
+  
+  .navbar-list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .login-btn, .signup-btn {
+    background-color: var(--accent-color1);
+    border: none;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: var(--accent-color2);
+  }
+  
+  .signup-btn:hover {
+    background-color: var(--accent-color3);
+  }
+  
+  /* Responsive styles for smaller screens */
+  .navbar-toggle {
+    display: none;
+    background-color: var(--accent-color1);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 4rem;
+      right: 0;
+      background-color: var(--main-color);
+      padding: 1rem;
+      border: 1px solid var(--accent-color1);
     }
-    .navbar{
-        width: 100%;
+  
+    .navbar-links.open {
+      display: block;
     }
+  
+    .navbar-list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  }
+  
 
-    .menu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .menu.open span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 5px);
-    }
 
-    .menu.open span:nth-child(2) {
-        opacity: 0;
-    }
 
-    .menu.open span:nth-child(3) {
-        transform: rotate(-45deg) translate(9px, -7px);
-    }
 
-    .pages {
-        display: none;
-        position: absolute;
-        top: 7%; 
-        left: 50%;
-        background-color: var(--secondary-main-color);
-        width: 40%;
-        transition: all 0.3s ease-in-out;
-    }
 
-    .pages.open {
-        display: block;
-    }
-
-    .links {
-
-        display: block;
-        margin: 7% 7%;
-        color: var(--text-color);
-        transition: color 0.3s ease;
-    }
-
-    .topnav ul {
-        display: block;
-    }
-
-    .links:hover {
-        color: var(--accent-color1);
-    }
-}
 
 
 /* item card  */
