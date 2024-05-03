@@ -3,8 +3,10 @@ import './index.css';
 
 function Alert({ message, type = 'info' }) {
     return (
-        <div className={`alert alert-${type}`}>
+        <div className="alertbox mt-5">
+            <div className={`alert alert-${type}`}>
             {message}
+            </div>
         </div>
     );
 }

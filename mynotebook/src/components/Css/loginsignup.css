@@ -23,6 +23,15 @@
     padding: 10px;
     transition: all 0.3s ease;
 }
+.backgroundsignup{
+    background-color: var(--main-color);
+    width: 40vw;
+    height: 60vh;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
 .buttonsubmit {
     background-color: var(--accent-color1);
     width: 9vw;
@@ -44,6 +53,11 @@
         height: 50vh;
         padding: 15px; 
     }
+    .backgroundsignup{
+        width: 60vw; 
+        height: 60vh;
+        padding: 15px; 
+    }
     .buttonsubmit {
         width: 20vw;
     }
@@ -53,6 +67,12 @@
     .background {
         width: 80vw; 
         height: 60vh; 
+        padding: 20px; 
+        border-radius: 15px; 
+    }
+    .backgroundsignup{
+        width: 80vw; 
+        height: 79vh; 
         padding: 20px; 
         border-radius: 15px; 
     }

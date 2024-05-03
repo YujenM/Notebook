@@ -182,8 +182,13 @@
 
 
 /* Alert component */
-
+.alertbox{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .alert {
+    width: 500px;
     padding: 10px;
     border-radius: 5px;
     font-size: 1rem;

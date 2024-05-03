@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Css/loginsignup.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as icon from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-
-
-function Login() {
+function Login(props) {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [login, setLogin] = useState({ email: '', password: '' });
     const navigate = useNavigate(); 
@@ -20,33 +19,34 @@ function Login() {
         
         const trimmedEmail = login.email.trim();
         const trimmedPassword = login.password.trim();
-        
-        
-        const response = await fetch("http://localhost:2000/api/auth/login", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
-        });
 
-        const json = await response.json();
-        
-        console.log(json);
-        if (json.success){
-            localStorage.setItem('token',json.authtoken)
-            navigate("/");
-            
-        }else{
-            alert("Invalid credentials");
+        try {
+            const response = await fetch("http://localhost:2000/api/auth/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
+            });
+
+            const json = await response.json();
+
+            if (json.success) {
+                localStorage.setItem('token', json.authtoken);
+                navigate("/");
+                props.showalert("Login successful!", "success"); // Use success message
+            } else {
+                props.showalert('Invalid credentials', "error"); // Use error message
+            }
+        } catch (error) {
+            props.showalert('An error occurred during login', "error"); // Handle fetch errors
         }
     };
 
     const onChange = (e) => {
         setLogin({
             ...login,
-            [e.target.name]: e.target.value, 
-            
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -60,8 +60,8 @@ function Login() {
                         <input
                             type="email"
                             name="email"
-                            value={login.email} 
-                            onChange={onChange} 
+                            value={login.email}
+                            onChange={onChange}
                             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
                             placeholder="Enter your email"
                         />
@@ -71,16 +71,16 @@ function Login() {
                         <input
                             type={passwordVisible ? 'text' : 'password'}
                             name="password"
-                            value={login.password} // Bind the value to state
-                            onChange={onChange} // Bind the change handler
+                            value={login.password}
+                            onChange={onChange}
                             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
                             placeholder="Enter your password"
                         />
                         <span
-                            className="absolute inset-y-0 right-0 flex items-center px-3 cursor-pointer"
+                            className="absolute inset-y-0 right-0 flex items-center px-3 cursor-pointer mt-5"
                             onClick={togglePasswordVisibility}
                         >
-                            <FontAwesomeIcon className="mt-5" icon={passwordVisible ? icon.faEyeSlash : icon.faEye} />
+                            <FontAwesomeIcon icon={passwordVisible ? icon.faEyeSlash : icon.faEye} />
                         </span>
                     </div>
                     <div className='flex justify-center'>

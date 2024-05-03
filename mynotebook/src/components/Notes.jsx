@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 import AddNotes from './AddNotes';
 import './Css/notes.css'
 
-const Notes = () => {
+const Notes = (props) => {
     const { notes, getNotes,editnote } = useContext(NoteContext);
     const ref = useRef(null);
     const refclose=useRef(null);
@@ -38,11 +38,12 @@ const Notes = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            console.log("Updating note",note);
             await editnote(note.id,note.etitle,note.edescription,note.etag);
             refclose.current.click();
+            props.showAlert('Notes Updated', 'info')
         }catch(err){
             console.log(err)
+            props.showAlert(err,"warning")
         }    
     };
 
@@ -85,14 +86,14 @@ const Notes = () => {
                 </div>
             </div>
 
-            <AddNotes />
+            <AddNotes showAlert={props.showAlert}/>
             <div className="nonotes">
                 {notes.length===0 && 
                     <h1>Write It Down, Keep It Handy.</h1>
                 }
             </div>
             {notes.map((note) => (
-                <NoteItem key={note._id} updateNote={updateNote} note={note} />
+                <NoteItem key={note._id} updateNote={updateNote} note={note}  showAlert={props.showAlert} />
             ))}
         </div>
     );

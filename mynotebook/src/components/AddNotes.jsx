@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as icon from '@fortawesome/free-solid-svg-icons';
 import notecontext from '../context/notes/Notecontext';
 
-function AddNotes() {
+function AddNotes(props) {
     const context = useContext(notecontext);
     const { addNote } = context;
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,17 +30,19 @@ function AddNotes() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (note.title.trim() === "" || note.description.trim() === "" || note.tag.trim() === "") {
-            alert("Please fill in all fields before submitting.");
+            props.showAlert("Fill all the fields before submitting","warning")
+            handleCloseModal();
             return;
         }
         try {
 
             await addNote(note.title,note.description,note.tag);
+            props.showAlert('Succesfully added notes','success')
             handleCloseModal();
         } catch (error) {
-            console.error("Error adding note:", error);
             // Display the error message to the user
-            alert("Failed to add note: " + error.message);
+            props.showAlert(error,'warning')
+            handleCloseModal()
         }
     };
     

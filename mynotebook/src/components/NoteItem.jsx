@@ -8,14 +8,18 @@ function NoteItem(props) {
     const {deletenote}=context;
     // const {editnote}=context;
     const { note,updateNote } = props;
-
+    const deletenotes=()=>{
+        deletenote(note._id);
+        props.showAlert("Note has been Deleted","success");
+        // props.showAlert("Fill all the fields before submitting","warning")
+    }
     return (
         <>
         <div className="notebook-card">
             <div className="notebook-card-header">
                 <div className="title">{note.title}</div>
                 <div className="icons">
-                    <FontAwesomeIcon icon={icon.faTrash} className="icon" onClick={()=>{deletenote(note._id)}} />
+                    <FontAwesomeIcon icon={icon.faTrash} className="icon" onClick={deletenotes} />
                     <FontAwesomeIcon icon={icon.faPenToSquare}  className="icon" onClick={()=>{updateNote(note)}} />
                 </div>
             </div>
