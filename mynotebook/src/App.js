@@ -19,7 +19,7 @@ function App() {
 
     setTimeout(() => {
       setAlert(null);
-    }, 1000); 
+    }, 2000); 
   };
 
   return (
@@ -27,10 +27,6 @@ function App() {
         <Router>
           <Navbar />
           {alert && <Alert message={alert.msg} type={alert.type} />}
-          {/* <Alert message="This is an informational message." type="info" />
-            <Alert message="This is a success message!" type="success" />
-            <Alert message="Warning! Proceed with caution." type="warning" />
-            <Alert message="Error: Something went wrong." type="error" /> */} 
           <Routes>
             <Route exact path="/" element={<Home showalert={showalert} />} />
             <Route exact path="/About" element={<About />} />

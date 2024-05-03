@@ -182,21 +182,53 @@
 
 
 /* Alert component */
-.alertbox{
+/* Basic styling for the alert box */
+.alertbox {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+
 .alert {
-    width: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items:center;
+  width: 300px; 
+  padding: 15px; 
+
+
+  border-radius: 5px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideIn 0.5s ease-in-out; 
 }
+
+.alert-close {
+  animation: slideOut 0.5s ease-in-out; 
+}
+
 
 /* Alert variants based on type */
 .alert-info {
