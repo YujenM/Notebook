@@ -30,16 +30,15 @@ function Login(props) {
             });
 
             const json = await response.json();
-
             if (json.success) {
                 localStorage.setItem('token', json.authtoken);
                 navigate("/");
-                props.showalert("Login successful!", "success"); // Use success message
+                props.showalert("Login successful!", "success"); 
             } else {
-                props.showalert('Invalid credentials', "error"); // Use error message
+                props.showalert('Invalid credentials', "error");
             }
         } catch (error) {
-            props.showalert('An error occurred during login', "error"); // Handle fetch errors
+            props.showalert(error, "error"); 
         }
     };
 

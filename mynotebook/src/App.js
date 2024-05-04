@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Notestate from './context/notes/NoteState';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -22,15 +22,26 @@ function App() {
     }, 2000); 
   };
 
+  const DisplayNavbar = () => {
+    const location = useLocation();
+    const hideNavbarRoutes = ['/userlogin', '/signup'];
+
+    if (hideNavbarRoutes.includes(location.pathname.toLowerCase())) {
+      return null; 
+    }
+
+    return <Navbar showalert={showalert}/>; 
+  };
+
   return (
     <Notestate>
         <Router>
-          <Navbar />
+          <DisplayNavbar />
           {alert && <Alert message={alert.msg} type={alert.type} />}
           <Routes>
             <Route exact path="/" element={<Home showalert={showalert} />} />
-            <Route exact path="/About" element={<About />} />
-            <Route exact path="/UserLogin" element={<Userlogin showalert={showalert} />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/userlogin" element={<Userlogin showalert={showalert} />} />
             <Route exact path="/signup" element={<Signup showalert={showalert} />} />
           </Routes>
         </Router>
