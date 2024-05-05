@@ -14,7 +14,7 @@ export default function Signup(props) {
     const onChange = (e) => {
         setsignup({
             ...signup,
-            [e.target.name]: e.target.value, // Using the name attribute to set the correct state property
+            [e.target.name]: e.target.value,
         });
     };
     const handleSubmit = async (e) => {
@@ -51,9 +51,9 @@ export default function Signup(props) {
         }
     };
     return (
-        <div className="flex justify-center mt-10">
+        <div className="formcenter">
         <div className='backgroundsignup flex flex-col justify-center items-center text-black'>
-            <h1 className='title text-center text-2xl mt-5 '>Signup</h1>
+            <h1 className='title text-center text-10xl mt-5 '>Signup <FontAwesomeIcon icon={icon.faBook}/></h1>
             <form className="w-full p-4" onSubmit={handleSubmit}>
             <div className="mb-4">
                     <label className="block text-black mb-1">Full Name:</label>
@@ -98,7 +98,7 @@ export default function Signup(props) {
                 </div>
                 </form>
                 <div className="gologin">
-                    <h1>Already Have an account? <Link to='/Userlogin'>Login</Link></h1>
+                    <h1>Already Have an account? <Link to='/Userlogin' className='gotosignuporlogin text-2xl ml-2'>Login</Link></h1>
                 </div>
             </div>
         </div>

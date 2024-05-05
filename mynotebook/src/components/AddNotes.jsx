@@ -30,18 +30,18 @@ function AddNotes(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (note.title.trim() === "" || note.description.trim() === "" || note.tag.trim() === "") {
-            props.showAlert("Fill all the fields before submitting","warning")
+            props.showalert("Fill all the fields before submitting","warning")
             handleCloseModal();
             return;
         }
         try {
 
             await addNote(note.title,note.description,note.tag);
-            props.showAlert('Succesfully added notes','success')
+            props.showalert('Succesfully added notes','success')
             handleCloseModal();
         } catch (error) {
             // Display the error message to the user
-            props.showAlert(error,'warning')
+            props.showalert(error,'warning')
             handleCloseModal()
         }
     };

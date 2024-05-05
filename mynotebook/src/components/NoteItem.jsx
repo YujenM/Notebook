@@ -10,7 +10,7 @@ function NoteItem(props) {
     const { note,updateNote } = props;
     const deletenotes=()=>{
         deletenote(note._id);
-        props.showAlert("Note has been Deleted","success");
+        props.showalert("Note has been Deleted","success");
         // props.showAlert("Fill all the fields before submitting","warning")
     }
     return (

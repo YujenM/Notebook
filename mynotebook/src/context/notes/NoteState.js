@@ -90,6 +90,8 @@ const editnote = async (id, title, description, tag) => {
     setNotes(newnote);
 };
 
+
+
 return (
     <Notecontext.Provider value={{ notes, addNote, deletenote, editnote,getNotes }}>
         {props.children}

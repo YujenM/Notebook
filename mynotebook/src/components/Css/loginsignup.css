@@ -13,6 +13,16 @@
     --accent-color3: #E6E6FA; /* Lavender */
 }
 
+.formcenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:var(--main-color);
+    height:100vh;
+    width: 100%;
+}
+
+
 
 .background {
     background-color: var(--main-color);
@@ -61,6 +71,9 @@
     .buttonsubmit {
         width: 20vw;
     }
+}
+.gotosignuporlogin{
+    color:var(--accent-color1);
 }
 
 @media (max-width: 480px) {

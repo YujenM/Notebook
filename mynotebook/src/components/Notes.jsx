@@ -48,10 +48,10 @@ const Notes = (props) => {
         try{
             await editnote(note.id,note.etitle,note.edescription,note.etag);
             refclose.current.click();
-            props.showAlert('Notes Updated', 'info')
+            props.showalert('Notes Updated', 'info')
         }catch(err){
             console.log(err)
-            props.showAlert(err,"warning")
+            props.showalert(err,"warning")
         }    
     };
 
@@ -94,14 +94,14 @@ const Notes = (props) => {
                 </div>
             </div>
 
-            <AddNotes showAlert={props.showAlert}/>
+            <AddNotes showalert={props.showalert}/>
             <div className="nonotes">
                 {notes.length===0 && 
                     <h1>Write It Down, Keep It Handy.</h1>
                 }
             </div>
             {notes.map((note) => (
-                <NoteItem key={note._id} updateNote={updateNote} note={note}  showAlert={props.showAlert} />
+                <NoteItem key={note._id} updateNote={updateNote} note={note}  showalert={props.showalert} />
             ))}
         </div>
     );

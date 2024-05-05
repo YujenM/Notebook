@@ -50,9 +50,9 @@ function Login(props) {
     };
 
     return (
-        <div className="flex justify-center mt-10">
+        <div className="formcenter">
             <div className='background flex flex-col justify-center items-center text-black'>
-                <h1 className='title text-center text-2xl'>Login</h1>
+                <h1 className='title text-center text-10xl'>Login <FontAwesomeIcon icon={icon.faBook}/></h1>
                 <form onSubmit={handleSubmit} className="w-full p-4">
                     <div className="mb-4">
                         <label className="block text-black mb-1" htmlFor="email">Email:</label>
@@ -89,7 +89,7 @@ function Login(props) {
                     </div>
                 </form>
                 <div className="gologin">
-                    <h1>Don't have an account? <Link to='/signup'>Sign up</Link></h1>
+                    <h1>Don't have an account? <Link to='/signup' className='gotosignuporlogin text-2xl ml-2'>Sign up</Link></h1>
                 </div>
             </div>
         </div>
