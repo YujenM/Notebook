@@ -17,7 +17,7 @@ router.get('/fetchallnotes',fetchuser, async (req,res)=>{
 
 // add new notes
 router.post('/addnote', fetchuser, [
-    body('title', 'Enter a valid title').isLength({ min: 5 }),
+    body('title', 'Enter a valid title').isLength({ min:2 }),
     body('description', 'Description must be at least 5 characters').isLength({ min: 5 }),
 ], async (req, res) => {
     try {
@@ -68,6 +68,29 @@ router.put('/updatenode/:id',fetchuser,async (req,res)=>{
         // updating the note
         note=await Note.findByIdAndUpdate(req.params.id,{$set:newnote},{new:true})
         res.json({note})
+    }catch(err){
+        console.log(err.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+
+//  Deleteing the notes
+router.delete('/deletenode/:id',fetchuser,async(req,res)=>{
+    try{
+        // finding the note by id 
+        let note= await Note.findById(req.params.id);
+        // if note is not found giving status 401
+        if(!note){
+            return res.status(401).send("ID Not found")
+        }
+        // if note is found then checking the user id
+        if (note.user.toString()!==req.user.id){
+            return res.status(401).send("Not Allowed"); 
+        }
+        // Deleting the note
+        note=await Note.findByIdAndDelete(req.params.id)
+        res.json("success: Note has been deleted")
     }catch(err){
         console.log(err.message);
         res.status(500).send("Internal Server Error");

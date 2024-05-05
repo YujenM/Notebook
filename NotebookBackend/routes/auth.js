@@ -17,6 +17,7 @@ router.post("/createuser",[
     body('email').isEmail(),
     body('password').isLength({min:5})
 ],async (req,res)=>{
+    let success=false;
     const errors=validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({
@@ -25,6 +26,7 @@ router.post("/createuser",[
     }
     try{
         //  check if the email is already exist or not
+        
         let user= await User.findOne({email:req.body.email});
         if(user){
             return res.status(400).json({error:"Email already exists"});
@@ -42,8 +44,8 @@ router.post("/createuser",[
             }
         }
         const authtoken=jwt.sign(data,JWT_SECRET)
-        
-        res.json({authtoken})
+        sucess=true
+        res.json({sucess,authtoken})
     }catch(err){
         console.log("err: "+err.message)
         res.status(500).send("Error occured")
@@ -56,6 +58,7 @@ router.post('/login', [
     body('email', "Enter a valid email").isEmail(),
     body('password', 'Password must be at least 5 characters').exists()
 ], async (req, res) => {
+    let success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -64,10 +67,13 @@ router.post('/login', [
     try {
         let user = await User.findOne({ email });
         if (!user) {
+            success=false;
             return res.status(400).json({ error: "No such user found" });
+            
         }
         const comparepassword = await bcrypt.compare(password, user.password);
         if (!comparepassword) {
+            success=false
             return res.status(400).json({ error: "Login with correct credentials" });
         }
         const data = {
@@ -76,7 +82,8 @@ router.post('/login', [
             }
         };
         const authtoken = jwt.sign(data, JWT_SECRET);
-        return res.json({ authtoken });
+        success=true;
+        return res.json({ success,authtoken });
     } catch (error) {
         console.log(error.message);
         return res.status(500).send("Server Error");
@@ -97,4 +104,55 @@ router.post('/getuser',fetchuser,async(req,res)=>{
     }
     
 })
+
+// update the password
+router.post(
+    '/updatepassword',
+    fetchuser, 
+    [
+        body('oldPassword', 'Old password is required').exists(),
+        body('newPassword', 'New password must be at least 5 characters long').isLength({ min: 5 }),
+    ],
+    async (req, res) => {
+        let success = false;
+
+        // Validate request input
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        // Destructure and ensure correct naming and casing
+        const { oldPassword, newPassword } = req.body; // Corrected variable names
+
+        try {
+            const userId = req.user.id; // Fetch user ID from JWT
+            const user = await User.findById(userId); // Retrieve user from database
+            
+            if (!user) {
+                return res.status(404).json({ success, error: "User not found" });
+            }
+
+            // Check if the old password matches the stored hashed password
+            const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
+
+            if (!isPasswordMatch) {
+                return res.status(400).json({ success, error: "Old password is incorrect" });
+            }
+
+            // Hash and update the new password
+            const salt = await bcrypt.genSalt(10);
+            const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+
+            user.password = hashedNewPassword; // Update the user's password
+            await user.save(); // Save the changes to the database
+
+            success = true;
+            res.json({ success, message: "Password updated successfully" }); 
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).json({ success, error: "Server Error" });
+        }
+    }
+);
 module.exports=router;
