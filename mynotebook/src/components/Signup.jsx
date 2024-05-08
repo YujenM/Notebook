@@ -36,7 +36,7 @@ export default function Signup(props) {
             const json = await response.json();
 
             if (response.ok) {
-                console.log(json);
+                // console.log(json);
                 localStorage.setItem('authtoken', json.authtoken); 
                 setsignup({ name: '', email: '', password: '', dob: '' });
                 props.showalert("Account Created","success")

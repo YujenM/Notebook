@@ -40,7 +40,7 @@ function App() {
           {alert && <Alert message={alert.msg} type={alert.type} />}
           <Routes>
             <Route exact path="/" element={<Home showalert={showalert} />} />
-            <Route exact path="/about" element={<Setting />} />
+            <Route exact path="/about" element={<Setting showalert={showalert}/>} />
             <Route exact path="/userlogin" element={<Userlogin showalert={showalert} />} />
             <Route exact path="/signup" element={<Signup showalert={showalert} />} />
           </Routes>

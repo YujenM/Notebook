@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Notecontext from '../context/notes/Notecontext'
 import './index.css';
 import Notes from './Notes';
 
 function Home(props) {
   const [userData, setUserData] = useState(null);
+  const{getuserdata}=useContext(Notecontext);
 
-  const getuserdata = async () => {
-    try {
-      const response = await fetch('http://localhost:2000/api/auth/getuser', {
-        method: 'POST',
-        headers: {
-          'auth-token': localStorage.getItem('token'),
-        },
-      });
-      const json = await response.json();
-      setUserData(json);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
 
   useEffect(() => {
-    getuserdata(); // Fetch user data when the component mounts
+    const fetchdata=async()=>{
+      const data=await getuserdata();
+      setUserData(data);
+    }
+    fetchdata();
+    // eslint-disable-next-line 
   }, []); // Empty dependency array ensures this runs only once on mount
 
   return (

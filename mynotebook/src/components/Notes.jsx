@@ -50,7 +50,7 @@ const Notes = (props) => {
             refclose.current.click();
             props.showalert('Notes Updated', 'info')
         }catch(err){
-            console.log(err)
+            // console.log(err)
             props.showalert(err,"warning")
         }    
     };

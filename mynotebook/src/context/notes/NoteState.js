@@ -54,7 +54,7 @@ const deletenote=async (id)=>{
     });
     const json=response.json();
     console.log(json)
-    console.log("Deleting the note" +id)
+    // console.log("Deleting the note" +id)
     const newnotes=notes.filter((note)=>{return note._id!==id})
     setNotes(newnotes)
 }
@@ -69,10 +69,11 @@ const editnote = async (id, title, description, tag) => {
             'Content-Type': 'application/json',
             'auth-token': localStorage.getItem('token'),
         },
+        
         body: JSON.stringify({ title, description, tag }), 
     });
 
-    const responseJson = await response.json(); 
+    const responseJson = await response.json();
     console.log('Edit response:', responseJson);
     // edit a note
     let newnote=JSON.parse(JSON.stringify(notes))
@@ -90,10 +91,28 @@ const editnote = async (id, title, description, tag) => {
     setNotes(newnote);
 };
 
+// get user detail
+
+
+const getuserdata = async () => {
+try {
+    const response = await fetch('http://localhost:2000/api/auth/getuser', {
+    method: 'POST',
+    headers: {
+        'auth-token': localStorage.getItem('token'),
+    },
+    });
+    const json = await response.json();
+    return json
+} catch (error) {
+    console.error('Error fetching user data:', error);
+}
+};
+
 
 
 return (
-    <Notecontext.Provider value={{ notes, addNote, deletenote, editnote,getNotes }}>
+    <Notecontext.Provider value={{ notes, addNote, deletenote, editnote,getNotes,getuserdata }}>
         {props.children}
     </Notecontext.Provider>
 );

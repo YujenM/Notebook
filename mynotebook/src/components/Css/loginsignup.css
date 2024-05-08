@@ -72,6 +72,8 @@
         width: 20vw;
     }
 }
+
+
 .gotosignuporlogin{
     color:var(--accent-color1);
 }
@@ -99,4 +101,7 @@
     }
 }
 
+.gologin h1{
+    color:var(--text-color)
+}
 
