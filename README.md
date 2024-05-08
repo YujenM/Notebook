@@ -1,4 +1,4 @@
-# NoteBook - A Note taking app.
+![image](https://github.com/YujenM/Notebook/assets/121010820/ef7a8cc6-c745-4c6b-8307-c030574122f4)# NoteBook - A Note taking app.
 
 Notebook is a simple note-taking application built with React.js for the frontend, Node.js for the backend, and MongoDB for the database. Users can register, log in, create, update, and delete their notes.
 
@@ -38,4 +38,25 @@ npm start
 - frontend/: Contains the React.js application code.
 - backend/: Contains the Node.js server and Express.js routes.
 - database/: MongoDB data and configurations (if applicable).
+
+# signup
+![image](https://github.com/YujenM/Notebook/assets/121010820/30962e12-a565-4c99-9eab-13a07e92d630)
+
+# login
+![image](https://github.com/YujenM/Notebook/assets/121010820/3527f793-1206-4a03-b3c3-a0216829bcac)
+
+# Adding Note
+![image](https://github.com/YujenM/Notebook/assets/121010820/4c5f14bd-0512-4f4b-885e-027df0b4d8f4)
+
+# Notes
+![image](https://github.com/YujenM/Notebook/assets/121010820/8265d5bb-70f5-4ea3-8ab8-9c879f8b4dff)
+
+# Update Note
+![image](https://github.com/YujenM/Notebook/assets/121010820/3ccc3f5f-4861-4472-b5ee-401e11da0d0a)
+
+# Settings 
+![image](https://github.com/YujenM/Notebook/assets/121010820/9311631d-e5ec-4632-bb44-3efb8b9c11ae)
+
+
+
 
